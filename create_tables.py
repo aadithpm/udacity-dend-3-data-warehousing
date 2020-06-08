@@ -4,15 +4,27 @@ from sql_queries import create_table_queries, drop_table_queries
 
 
 def drop_tables(cur, conn):
+    print('Dropping tables..')
     for query in drop_table_queries:
-        cur.execute(query)
-        conn.commit()
+        try:
+            cur.execute(query)
+            conn.commit()
+        except psycopg2.Error as e:
+            print('Error executing DROP query')
+            print(e)
+            print(query)    
 
 
 def create_tables(cur, conn):
+    print('Creating tables..')
     for query in create_table_queries:
-        cur.execute(query)
-        conn.commit()
+        try:
+            cur.execute(query)
+            conn.commit()
+        except psycopg2.Error as e:
+            print('Error executing CREATE query')
+            print(e)
+            print(query)
 
 
 def main():
