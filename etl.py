@@ -4,15 +4,31 @@ from sql_queries import copy_table_queries, insert_table_queries
 
 
 def load_staging_tables(cur, conn):
+    print('Running copy queries..')
     for query in copy_table_queries:
-        cur.execute(query)
-        conn.commit()
+        print('-- Running copy query:')
+        print(f'-- {query}')
+        try:
+            cur.execute(query)
+            conn.commit()
+        except psycopg2.Error as e:
+            print('Error executing COPY query')
+            print(e)
+            print(query)
 
 
 def insert_tables(cur, conn):
+    print('Running insert queries..')
     for query in insert_table_queries:
-        cur.execute(query)
-        conn.commit()
+        print('-- Running copy query:')
+        print(f'-- {query}')
+        try:
+            cur.execute(query)
+            conn.commit()
+        except psycopg2.Error as e:
+            print('Error executing INSERT query')
+            print(e)
+            print(query)
 
 
 def main():
