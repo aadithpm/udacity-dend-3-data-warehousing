@@ -52,8 +52,8 @@ staging_songs_table_create = ("""
 CREATE TABLE IF NOT EXISTS staging_songs(
     num_songs integer NOT NULL,
     artist_id varchar(20) NOT NULL SORTKEY DISTKEY,
-    artist_latitude text,
-    artist_longitude text,
+    artist_latitude float,
+    artist_longitude float,
     artist_location text,
     artist_name text,
     song_id varchar(20) NOT NULL,
@@ -164,7 +164,6 @@ FROM staging_events AS e
 JOIN staging_songs AS s
     ON (e.artist = s.artist_name)
 WHERE e.page = 'NextSong';
-)
 """)
 
 user_table_insert = ("""
