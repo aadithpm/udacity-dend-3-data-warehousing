@@ -4,10 +4,11 @@ from sql_queries import copy_table_queries, insert_table_queries
 
 
 def load_staging_tables(cur, conn):
-    print('Running copy queries..')
+    print('Running COPY queries..')
+    print(f'COPY queries: {len(copy_table_queries)}')
     for query in copy_table_queries:
-        print('-- Running copy query:')
-        print(f'-- {query}')
+        print('-- COPY query:')
+        print(f'{query}')
         try:
             cur.execute(query)
             conn.commit()
@@ -18,10 +19,11 @@ def load_staging_tables(cur, conn):
 
 
 def insert_tables(cur, conn):
-    print('Running insert queries..')
+    print('Running INSERT queries..')
+    print(f'INSERT queries: {len(insert_table_queries)}')
     for query in insert_table_queries:
-        print('-- Running copy query:')
-        print(f'-- {query}')
+        print('-- INSERT query:')
+        print(f'{query}')
         try:
             cur.execute(query)
             conn.commit()
