@@ -16,6 +16,8 @@ def load_staging_tables(cur, conn):
             print('Error executing COPY query')
             print(e)
             print(query)
+            print('Exiting..')
+            break
 
 
 def insert_tables(cur, conn):
@@ -43,6 +45,7 @@ def main():
     cur = conn.cursor()
     
     load_staging_tables(cur, conn)
+
     insert_tables(cur, conn)
 
     conn.close()
