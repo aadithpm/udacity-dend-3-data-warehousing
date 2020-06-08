@@ -31,6 +31,8 @@ def insert_tables(cur, conn):
             print('Error executing INSERT query')
             print(e)
             print(query)
+            print('Exiting..')
+            break
 
 
 def main():
